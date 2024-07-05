@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL shortner</title>
+</head>
+<body>
+    <h1> URL shortner</h1>
+    
+    <p> url generated  
+        <%if(locals.redirectURL){ %>
+            <%=  redirectURL %>
+        <% } %>
+       </p>
+       <% if(locals.id){ %>    <!-- locals.id means if server is passing id parameter also ( see generate url)-->
+     <p> http://localhost:3000/id/<%= id %> </p> 
+    <% } %>
+   
+    <div>
+        <form action="/url" method="post">
+            <label for="i1"> Enter the URL</label>
+            <INPUT id="i1" name="url" type="text" placeholder="http://example.com"></INPUT>  <!-- name = "url because in generateUrl function we gave namr to the body parameter as url"-->
+            <button type = 'submit'> GENERATE</button>
+        </form>
+    </div>
+    
+
+    <div>
+        <table>
+            <tr>
+                <th> id </th>
+                <th> Clicks</th>
+                <th> url </th>
+            </tr>
+            
+            <% if(locals.url){%>
+              
+                <% url.map((url,index)=>{ %>
+                    <tr>
+                    <td><%=url.shortId %></td>  
+                    <td> <%=url.visitHistory.length %> </td> 
+                    <td><%=url.redirectURL%></td>  
+                </tr>  
+                    <% }) %>
+             
+            <% } %>
+            
+        </table>
+    </div>
+
+</body>
+</html>
