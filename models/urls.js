@@ -22,7 +22,13 @@ const urlsch = new mongoose.Schema(
                     type:Number
                 }
             }
-        ]
+        ],
+
+        createdBy:     // for different urls in different accounts (did after authentication)
+        {
+            type:mongoose.Schema.Types.ObjectId,        // can access it using _id later 
+            ref:'users'    // refers to users collection
+        }
            
             
         

@@ -22,6 +22,7 @@ async  function generateurl(req,res)
         shortId: shortID,
         redirectURL:req.body.url,
         // visitHistory:[{}]
+        createdBy: req.user._id    // req.user from restrictTo...
 
     })
 
